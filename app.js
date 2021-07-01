@@ -20,10 +20,13 @@ const spotRoutes = require("./routes/spots");
 const reviewRoutes = require("./routes/reviews");
 const userRoutes = require("./routes/users");
 
+const MongoStore = new require('connect-mongo');
+
 const { date } = require("joi");
 const { authenticate } = require("passport");
+const dbURL = "mongodb+srv://ya17kun:KwJBy8hBr7gQEznI@cluster0.kyk3f.mongodb.net/myFirstDatabase?retryWrites=true&w=majority";
 
-mongoose.connect("mongodb://localhost:27017/lets-go", {
+mongoose.connect(dbURL, {
   useNewUrlParser: true,
   useCreateIndex: true,
   useUnifiedTopology: true,
@@ -44,8 +47,17 @@ app.use(express.urlencoded({ extended: true }));
 app.use(methodOverride("_method"));
 app.use(express.static(path.join(__dirname, "public")));
 
+const store = MongoStore.create({
+  mongoUrl: dbURL,
+  touchAfter: 24 * 60 * 60,
+  crypto: {
+      secret: 'squirrel'
+  }
+});
+
 app.use(
   session({
+    store,
     secret: "abcd",
     resave: false,
     saveUninitialized: true,
@@ -91,7 +103,7 @@ app.use((err, req, res, next) => {
   }
   res.status(status).render("error", { err });
 });
-
-app.listen(3000, () => {
-  console.log("SERVER STARTED ON 3000");
+const port = process.env.PORT || 3000;
+app.listen(port, () => {
+  console.log(`SERVER STARTED ON ${port}`);
 });
