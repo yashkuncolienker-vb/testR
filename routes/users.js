@@ -3,33 +3,13 @@ const router = express.Router();
 const User = require("../models/user");
 const catchAsync = require("../utils/catchAsync");
 const passport = require("passport");
+const user = require("../controllers/users");
 
-router.get("/register", (req, res) => {
-  res.render("users/register");
-});
+router.get("/register", user.showRegister);
 
-router.post(
-  "/register",
-  catchAsync(async (req, res) => {
-    try {
-      const { email, username, password } = req.body.user;
-      const usr = new User({ email, username });
-      const regUser = await User.register(usr, password);
-      req.login(regUser, (err) => {
-        if (err) return next(err);
-        req.flash("success", "Successfully Registered New User");
-        res.redirect("/spot");
-      });
-    } catch (e) {
-      req.flash("errors", e.message);
-      res.redirect("/register");
-    }
-  })
-);
+router.post("/register", catchAsync(user.register));
 
-router.get("/login", (req, res) => {
-  res.render("users/login");
-});
+router.get("/login", user.showLogin);
 
 router.post(
   "/login",
@@ -37,21 +17,8 @@ router.post(
     failureFlash: true,
     failureRedirect: "/login",
   }),
-  (req, res) => {
-    req.flash("success", "welcome back");
-    let storedURL = "/spot";
-    if (req.session.storedURL && req.session.storedURL.method !== "GET") {
-      storedURL = req.session.storedURL
-    }
-    delete req.session.storedURL;
-    res.redirect(storedURL);
-  }
-
+  user.login
 );
 
-router.get("/logout", (req, res) => {
-  req.logout();
-  req.flash("success", "Logged Out");
-  res.redirect("/spot");
-});
+router.get("/logout", user.logout);
 module.exports = router;
