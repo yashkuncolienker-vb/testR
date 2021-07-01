@@ -1,0 +1,54 @@
+<% layout('layouts/boilerplate.ejs') %>
+
+
+<div class="row">
+	<h1 class="text-center">Edit Spot</h1>
+	<div class="col-6 offset-3">
+		<form action="/spot/<%=temp.id%>?_method=PUT" class="form-validate" method="POST" novalidate>
+			<div class="mb-3">
+				<label for="title" class="form-label">TITLE: </label>
+				<input class="form-control" id="title" type="text" name="spot[title]" value="<%=temp.title%>"required>
+				<div class="valid-feedback">OK</div>	
+			</div>
+			<div class="mb-3">
+				<label class="form-label" for="location">LOCATION: </label>
+				<input id="location" class="form-control" type="text" name="spot[location]" value="<%=temp.location%>"required>
+				<div class="valid-feedback">OK</div>	
+			</div>
+			<div class="mb-3">
+				<label class="form-label" for="image">IMAGE URL: </label>
+				<input id="image" class="form-control" type="text" name="spot[image]" value="<%=temp.image%>"required>
+				<div class="valid-feedback">OK</div>	
+			</div>
+			<div class="mb-3">
+				<label class="form-label" for="description">DESCRIPTION: </label>
+				<textarea id="description" class="form-control" type="text" name="spot[description]" 
+				required><%=temp.description%></textarea>
+				<div class="valid-feedback">OK</div> 	
+			</div>
+			<div class="mb-3">
+				<label class="form-label" for="price">AVG PRICE: </label>
+
+			<div class="input-group mb-3" >
+				<span class="input-group-text">$</span>
+				<input id="price" name="spot[price]" value="<%=temp.price%>" type="text" class="form-control" placeholder="0"  required>
+				<span class="input-group-text">.00</span>
+				<div class="valid-feedback">OK</div>
+			</div>
+			
+			</div>
+
+			<a href="/spot" class="m-3 btn btn-warning">Back</a>
+			<div class="d-inline mb-3">
+				<button class="btn btn-info">Edit</button>
+			</div>
+ 			
+			
+		</form>
+		
+
+	</div>
+
+
+</div>
+

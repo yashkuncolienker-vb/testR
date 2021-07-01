@@ -1,0 +1,52 @@
+<% layout('layouts/boilerplate.ejs') %>
+
+<div class="row">
+	<h1 class="text-center">New Spot</h1>
+	<div class="col-6 offset-3">
+		<form action="/spot" method="POST" class="form-validate" novalidate>
+			<div class="mb-3">
+				<label for="title" class="form-label">TITLE: </label>
+				<input class="form-control" id="title" type="text" name="spot[title]" required>	
+				<div class="valid-feedback">OK</div>
+			</div>
+			<div class="mb-3">
+				<label class="form-label" for="location">LOCATION: </label>
+				<input id="location" class="form-control" type="text" name="spot[location]" required>
+				<div class="valid-feedback">OK</div>				
+			</div>
+			<div class="mb-3">
+				<label class="form-label" for="image">IMAGE URL: </label>
+				<input id="image" class="form-control" type="text" name="spot[image]" required>
+				<div class="valid-feedback">OK</div>	
+			</div>
+			<div class="mb-3">
+				<label class="form-label" for="description">DESCRIPTION: </label>
+				<textarea id="description" class="form-control" type="text" name="spot[description]" required></textarea>
+				<div class="valid-feedback">OK</div> 	
+			</div>
+			<div class="mb-3">
+				<label class="form-label" for="price">AVG PRICE: </label>
+
+			<div class="input-group mb-3" >
+				<span class="input-group-text">$</span>
+				<input id="price" name="spot[price]" type="text" class="form-control" placeholder="0"   required>
+				<span class="input-group-text">.00</span>
+				<div class="valid-feedback">OK</div>
+			</div>
+
+			</div>
+
+
+			<div class="mb-3">
+				<button class="btn btn-success">SUBMIT</button>
+			</div>
+
+			
+		</form>
+		<a href="/spot">Back</a>
+
+	</div>
+
+
+</div>
+
