@@ -24,7 +24,7 @@ const MongoStore = new require('connect-mongo');
 
 const { date } = require("joi");
 const { authenticate } = require("passport");
-const dbURL = "mongodb+srv://ya17kun:KwJBy8hBr7gQEznI@cluster0.kyk3f.mongodb.net/myFirstDatabase?retryWrites=true&w=majority";
+const dbURL = process.env.dbURL || 'mongodb://localhost:27017/test' ;
 
 mongoose.connect(dbURL, {
   useNewUrlParser: true,
@@ -47,18 +47,21 @@ app.use(express.urlencoded({ extended: true }));
 app.use(methodOverride("_method"));
 app.use(express.static(path.join(__dirname, "public")));
 
+
+const secretKey = process.env.secretKey || '1234';
+
 const store = MongoStore.create({
   mongoUrl: dbURL,
   touchAfter: 24 * 60 * 60,
   crypto: {
-      secret: 'squirrel'
+      secret: secretKey
   }
 });
 
 app.use(
   session({
     store,
-    secret: "abcd",
+    secret: secretKey,
     resave: false,
     saveUninitialized: true,
     cookie: {
