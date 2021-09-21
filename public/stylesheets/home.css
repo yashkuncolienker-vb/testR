@@ -1,0 +1,107 @@
+@import url("https://fonts.googleapis.com/css?family=Quicksand:400,500,700");
+html,
+body {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Quicksand", sans-serif;
+  background: url("https://images.unsplash.com/photo-1511497584788-876760111969?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=2000&q=80")
+    no-repeat center / cover;
+  height: 100vh;
+  color: white;
+}
+
+.font-white {
+  color: white;
+}
+
+nav a {
+  text-decoration: none;
+  color: white;
+  height: 100%;
+  display: inline-block;
+  font-size: 1.5rem;
+  font-weight: bold;
+}
+
+nav a:hover {
+  color: #fff;
+  transition: font-size, 1s;
+  font-size: 1.2rem;
+}
+
+
+
+main {
+  background-color: rgba(255, 255, 255, 0.3);
+  border-radius: 20px;
+}
+
+h1 {
+  font-size: 3.5rem;
+}
+
+main p {
+  font-size: 1.3rem;
+}
+
+.wrapper {
+  position: fixed;
+  bottom: 20%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.link_wrapper {
+  position: relative;
+}
+
+.wrapper a {
+  display: block;
+  width: 250px;
+  height: 50px;
+  line-height: 50px;
+  font-weight: bold;
+  text-decoration: none;
+  background: #333;
+  text-align: center;
+  color: #fff;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  border: 3px solid #333;
+  transition: all 0.35s;
+}
+
+.icon {
+  width: 50px;
+  height: 50px;
+  border: 3px solid transparent;
+  position: absolute;
+  transform: rotate(45deg);
+  right: 0;
+  top: 0;
+  z-index: -1;
+  transition: all 0.35s;
+}
+
+.icon svg {
+  width: 30px;
+  position: absolute;
+  top: calc(50% - 15px);
+  left: calc(50% - 15px);
+  transform: rotate(-45deg);
+  fill: #2ecc71;
+  transition: all 0.35s;
+}
+
+.wrapper a:hover {
+  width: 200px;
+  border: 3px solid #2ecc71;
+  background: transparent;
+  color: #2ecc71;
+}
+
+a:hover + .icon {
+  border: 3px solid #2ecc71;
+  right: -25%;
+}

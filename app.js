@@ -24,7 +24,11 @@ const MongoStore = new require('connect-mongo');
 
 const { date } = require("joi");
 const { authenticate } = require("passport");
-const dbURL = process.env.dbURL || 'mongodb://localhost:27017/test' ;
+
+const dbURL = process.env.dbURL || 'mongodb://localhost:27017/lets-go' ;
+const port = process.env.PORT || 3000;
+const secretKey = process.env.secretKey || '1234';
+
 
 mongoose.connect(dbURL, {
   useNewUrlParser: true,
@@ -48,7 +52,6 @@ app.use(methodOverride("_method"));
 app.use(express.static(path.join(__dirname, "public")));
 
 
-const secretKey = process.env.secretKey || '1234';
 
 const store = MongoStore.create({
   mongoUrl: dbURL,
@@ -106,7 +109,7 @@ app.use((err, req, res, next) => {
   }
   res.status(status).render("error", { err });
 });
-const port = process.env.PORT || 3000;
+
 app.listen(port, () => {
   console.log(`SERVER STARTED ON ${port}`);
 });

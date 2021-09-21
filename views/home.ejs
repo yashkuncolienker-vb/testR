@@ -11,33 +11,38 @@
     <link rel="stylesheet" href="/stylesheets/home.css">
 </head>
 
-<body class="d-flex text-center text-white bg-dark">
-    <div class="cover-container d-flex w-100 h-100 p-3 mx-auto flex-column">
-        <header class="mb-auto">
-            <div>
-                <h3 class="float-md-left mb-0">letsGO!</h3>
-                <nav class="nav nav-masthead justify-content-center float-md-right">
-                    <a class="nav-link" href="/spot">Spots</a>
+<body>
+    <div  class="d-flex flex-column h-100">
+        <header>
+            <div class="d-flex justify-content-between align-items-baseline" >
+                <h3 class="font-white p-3 ">letsGO!</h3>
+                <nav >
+                    <a class="p-3" href="/spot">Spots</a>
                     <% if(!currentUser) { %>
-                    <a class="nav-link" href="/login">Login</a>
-                    <a class="nav-link" href="/register">Register</a>
+                    <a class="p-3" href="/login">Login</a>
+                    <a class="p-3" href="/register">Register</a>
                     <% } else { %>
-                    <a class="nav-link" href="/logout">Logout</a>
+                    <a class="p-3" href="/logout">Logout</a>
                     <% } %>
                 </nav>
             </div>
         </header>
-        <main class="px-3 mx-auto">
-            <h1>letsGO!</h1>
-            <p class="lead"> Welcome! <br> Share unknown spots with fellow tourists <br>
+        <main class="align-self-center m-auto p-5 text-center">
+            <h1 class="font-white">letsGO!</h1>
+            <p > Welcome! <br> Share unknown spots with fellow tourists <br>
                 </p>
-            <a href="/spot" class="btn btn-lg btn-secondary font-weight-bold border-white ">View
-                spots</a>
+                <div class="wrapper">
+                    <div class="link_wrapper">
+                      <a href="/spot">View Spots</a>
+                      <div class="icon">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 268.832 268.832">
+                          <path d="M265.17 125.577l-80-80c-4.88-4.88-12.796-4.88-17.677 0-4.882 4.882-4.882 12.796 0 17.678l58.66 58.66H12.5c-6.903 0-12.5 5.598-12.5 12.5 0 6.903 5.597 12.5 12.5 12.5h213.654l-58.66 58.662c-4.88 4.882-4.88 12.796 0 17.678 2.44 2.44 5.64 3.66 8.84 3.66s6.398-1.22 8.84-3.66l79.997-80c4.883-4.882 4.883-12.796 0-17.678z"/>
+                        </svg>
+                      </div>
+                    </div>
+                    
+                  </div>
         </main>
-
-        <footer class="mt-auto text-white-50">
-            <p>&copy; 2021 </p>
-        </footer>
 
 
     </div>
